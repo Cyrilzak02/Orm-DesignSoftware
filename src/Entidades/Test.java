@@ -7,8 +7,8 @@ public class Test {
 
 	
 	public static void main(String[] args) {
-		Biblioteca biblioteca = new Biblioteca();
-		Cliente c1 = new Cliente("Cyril Zakhia" ,"cyrilzakhia@hotmail.com","3810135342-62","Charmouta", biblioteca);
+		
+		Cliente c1 = new Cliente("Cyril Zakhia" ,"cyrilzakhia@hotmail.com","3810135342-62","Charmouta");
 		
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");

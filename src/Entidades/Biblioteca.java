@@ -7,11 +7,13 @@ import jakarta.persistence.*;
 public class Biblioteca {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name = "BIBLIO_ID")
 	private long id;
 	
 	@OneToOne(fetch=FetchType.LAZY , mappedBy = "biblioteca")
 	private Cliente cliente;
+	
 	
 	@ManyToMany
 	@JoinTable(

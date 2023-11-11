@@ -26,12 +26,12 @@ public class Cliente{
 	@JoinColumn(name="BIBLIO_ID")
 	private Biblioteca biblioteca;
 	
-	public Cliente(String nome, String email, String cpf, String endereco ,Biblioteca biblioteca) {
+	public Cliente(String nome, String email, String cpf, String endereco) {
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.endereco = endereco;
-		this.biblioteca = biblioteca;
+		this.biblioteca = new Biblioteca();
 		this.pedidosCliente = new ArrayList<Pedido>();
 	    this.saldo = 0.0f; 
 	}
