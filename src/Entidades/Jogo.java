@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Jogo {
+	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID_JOGO")
 	private Long id;
@@ -26,6 +27,7 @@ public class Jogo {
 		this.versao = versao;
 		this.desenvolvedora = desenvolvedora;
 	}
+	public Jogo() {}
 	
 	
 	

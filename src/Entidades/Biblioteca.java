@@ -19,5 +19,7 @@ public class Biblioteca {
 			joinColumns= {@JoinColumn(name="BIB_ID",referencedColumnName="BIBLIO_ID")},
 			inverseJoinColumns= {@JoinColumn(name="JOGO_ID",referencedColumnName ="ID_JOGO")})
 	private List<Jogo> Jogos;
+	
+	public Biblioteca () {}
 
 }

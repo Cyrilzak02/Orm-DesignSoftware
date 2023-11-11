@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Pedido {
+	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID_Pedido")
 	private Long id;
@@ -27,6 +28,7 @@ public class Pedido {
 		this.jogo = jogo;
 		
 	}
+	public Pedido() {}
 	
 	
 	

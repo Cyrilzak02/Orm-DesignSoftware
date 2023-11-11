@@ -7,11 +7,11 @@ public class Test {
 
 	
 	public static void main(String[] args) {
-		Cliente c1 = new Cliente("Cyril Zakhia" ,"cyrilzakhia@hotmail.com","3810135342-62","Charmouta");
+		Biblioteca biblioteca = new Biblioteca();
+		Cliente c1 = new Cliente("Cyril Zakhia" ,"cyrilzakhia@hotmail.com","3810135342-62","Charmouta", biblioteca);
 		
-		Pedido p = new Pedido();
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogos_onlinePu");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();

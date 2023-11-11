@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 import java.util.List;
-
+import java.util.*;
 
 
 @Entity
@@ -17,12 +17,12 @@ public class Cliente{
 	private Long id;
 	
 	private String nome , cpf , endereco , email;
-	private float Saldo;
+	private float saldo;
 	
 	@OneToMany(mappedBy = "cliente")
-	private List<Pedido> PedidosCliente;
+	private ArrayList<Pedido> pedidosCliente;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name="BIBLIO_ID")
 	private Biblioteca biblioteca;
 	
@@ -32,6 +32,8 @@ public class Cliente{
 		this.cpf = cpf;
 		this.endereco = endereco;
 		this.biblioteca = biblioteca;
+		this.pedidosCliente = new ArrayList<Pedido>();
+	    this.saldo = 0.0f; 
 	}
 	
 	public Cliente() {
