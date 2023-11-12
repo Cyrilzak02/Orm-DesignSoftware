@@ -9,6 +9,12 @@ import Entidades.Cliente;
 import Entidades.Desenvolvedora;
 import Negocios.ClienteNegocio;
 import Negocios.DesenvolvedoraNegocios;
+import java.util.List;
+import java.util.Scanner;
+
+import javax.swing.ListCellRenderer;
+
+import Dados.DesenvolvedoraDados;
 
 
 
@@ -64,7 +70,7 @@ public class Principal {
                         }else if(op.equals(2)) {
                         	List<Jogo> jogosDoCliente = ClienteBibliotecaApresentacao.obterJogosDoCliente(cliente);
                         	for (Jogo jogo : jogosDoCliente) {
-                        	    System.out.println("Nome do Jogo: " + jogo.getNome());               
+                        	    System.out.println("Nome do Jogo: " + jogo.getNomeJogo());               
                         	    System.out.println("----------------------");
                         	}
                         }

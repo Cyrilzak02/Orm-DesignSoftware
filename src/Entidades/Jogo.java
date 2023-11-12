@@ -35,8 +35,8 @@ public class Jogo {
 	public void setDes(Desenvolvedora desenvolvedora) {
 		this.desenvolvedora = desenvolvedora;
 	}
-	public String getNome() {
-		return nomeJogo;
+	public String getNomeJogo() {
+		return this.nomeJogo;
 	}
 	
 	
