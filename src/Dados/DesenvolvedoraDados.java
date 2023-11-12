@@ -183,6 +183,38 @@ public class DesenvolvedoraDados {
 	    }
 		
 	}
+	public void deleteJogo(long jogoId) {
+	    EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+	    EntityManager em = emf.createEntityManager();
+
+	    try {
+	        // Begin a transaction
+	        em.getTransaction().begin();
+
+	        // Retrieve the Jogo entity from the database
+	        Jogo jogo = em.find(Jogo.class, jogoId);
+
+	        // Check if the entity exists
+	        
+	            // Remove the entity
+	            em.remove(jogo);
+
+	            // Commit the transaction to persist the changes
+	            em.getTransaction().commit();
+
+	           
+	    } catch (Exception e) {
+	        // If an exception occurs, rollback the transaction
+	        if (em.getTransaction().isActive()) {
+	            em.getTransaction().rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        // Close the EntityManager and EntityManagerFactory
+	        em.close();
+	        emf.close();
+	    }
+	}
 	
 	
 	

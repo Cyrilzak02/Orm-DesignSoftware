@@ -73,6 +73,17 @@ public boolean atualizarVersao(Desenvolvedora desenvolvedora , int index , float
 	
 	
 }
+public boolean deleteJogo(Desenvolvedora desenvolvedora , int index) {
+	List <Jogo> jogos = desenvolvedoraDados.listarJogos(desenvolvedora);
+	if(index >= jogos.size()) {
+		return false;
+	}
+	desenvolvedoraDados.deleteJogo(jogos.get(index).getId());
+	return true;
+	
+	
+	
+}
 
 
 

@@ -101,6 +101,7 @@ public class Principal {
 			System.out.println("[2]- Visualizar Jogos Publicados.");
 			System.out.println("[3]- Atualizar Versao Jogo");
 			System.out.println("[4]- Remover Jogo");
+			System.out.println("[Else] - Sair");
 			System.out.print("Resposta: ");
 			String option = in.next();
 			if(option.equals("1")) {
@@ -114,7 +115,7 @@ public class Principal {
 				}
 				
 			}
-			if(option.equals("2")){
+			else if(option.equals("2")){
 				List <Jogo> jogos_des = desenvolvedoraNegocios.listarJogos(desenvolvedora);
 				if(jogos_des== null) {
 					System.out.println("Voce nao publicou nenhum jogo ainda");
@@ -123,8 +124,9 @@ public class Principal {
 				for (int i=0;i<jogos_des.size();i++) {
 					System.out.println(i+" - "+jogos_des.get(i).getNomeJogo());
 				}
+				
 			}
-			if(option.equals("3")) {
+			else if(option.equals("3")) {
 				List <Jogo> jogos_des = desenvolvedoraNegocios.listarJogos(desenvolvedora);
 				if(jogos_des== null) {
 					System.out.println("Voce nao publicou nenhum jogo ainda");
@@ -142,8 +144,23 @@ public class Principal {
 				}
 				System.out.println("A atualizacao foi feita com sucesso");
 			}
-			if(option.equals("4")) {
+			else if(option.equals("4")) {
+				List <Jogo> jogos_des = desenvolvedoraNegocios.listarJogos(desenvolvedora);
+				if(jogos_des== null) {
+					System.out.println("Voce nao publicou nenhum jogo ainda");
+					continue;
+				}
+				for (int i=0;i<jogos_des.size();i++) {
+					System.out.println(i+" - "+jogos_des.get(i).getNomeJogo());
+				}
+				boolean removeu = desenvolvedoraApresentacao.deleteJogo(desenvolvedora);
 				
+				if(!removeu) {
+					System.out.println("O jogo nao foi removido");
+					continue;
+				}
+				else {
+				System.out.println("O jogo foi removido com sucesso");}
 			}
 			else {
 				System.out.println("Okay. CIAO , CIAO.");

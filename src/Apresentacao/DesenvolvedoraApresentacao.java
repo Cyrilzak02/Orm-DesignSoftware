@@ -39,6 +39,17 @@ public class DesenvolvedoraApresentacao {
 			return des.atualizarVersao(desenvolvedora, index, versao);
 				
          }
+         public boolean deleteJogo(Desenvolvedora desenvolvedora) {
+        	 DesenvolvedoraNegocios des = new DesenvolvedoraNegocios();
+        	 System.out.println("Escolhe um jogo que voce deseja remover:(Digitar numero)");
+        	 Scanner in = new Scanner(System.in);
+				int index = in.nextInt();
+			
+			
+			return des.deleteJogo(desenvolvedora, index);
+				
+         }
+         
          
          
 }
