@@ -9,12 +9,13 @@ import jakarta.persistence.*;
 public class Desenvolvedora {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="DES_ID")
-	private float id;
+	private long id;
 	
     private String nome , cnpj , endereco;
     
-    @OneToMany(mappedBy="desenvolvedora")
+    @OneToMany(mappedBy="desenvolvedora", cascade = CascadeType.PERSIST)
     private List<Jogo> jogos;
     
     
@@ -35,6 +36,15 @@ public class Desenvolvedora {
 	   return this.cnpj;
    }
 	
+   public List getJogos() {
+	   return this.jogos;
+   }
+   public void addListJogos(Jogo jogo) {
+	   this.jogos.add(jogo);
+   }
+   public long getId() {
+	   return this.id;
+   }
 	
 
 }
