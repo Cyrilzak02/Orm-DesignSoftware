@@ -7,8 +7,6 @@ package Apresentacao;
 
 import Entidades.Cliente;
 import Entidades.Desenvolvedora;
-import Negocios.ClienteNegocio;
-import Negocios.DesenvolvedoraNegocios;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,8 +14,19 @@ import javax.swing.ListCellRenderer;
 
 import Dados.DesenvolvedoraDados;
 
+import Dados.DesenvolvedoraDados;
 
 
+
+
+
+
+
+
+
+
+
+import Entidades.*;
 public class Principal {
 	public static ClienteApresentacao clienteApresentacao = new ClienteApresentacao();
 	public static ClienteNegocio clienteNegocio = new ClienteNegocio();
