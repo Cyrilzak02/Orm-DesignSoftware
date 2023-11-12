@@ -5,24 +5,30 @@ package Apresentacao;
 
 
 
-import Entidades.Cliente;
-import Entidades.Desenvolvedora;
+
+
+
+
+
+
+
+
+
+
+
+
+
 import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.ListCellRenderer;
 
 import Dados.DesenvolvedoraDados;
-
-import Dados.DesenvolvedoraDados;
-
-
-
-
-
-
-
-
+import Entidades.Cliente;
+import Entidades.Desenvolvedora;
+import Negocios.ClienteNegocio;
+import Negocios.DesenvolvedoraNegocios;
+import Entidades.*;
 
 
 
