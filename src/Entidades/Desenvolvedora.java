@@ -42,6 +42,7 @@ public class Desenvolvedora {
    public void addListJogos(Jogo jogo) {
 	   this.jogos.add(jogo);
    }
+   
    public long getId() {
 	   return this.id;
    }

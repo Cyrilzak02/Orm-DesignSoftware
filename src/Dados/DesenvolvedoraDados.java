@@ -1,5 +1,6 @@
 package Dados;
 
+import java.awt.Checkbox;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -77,7 +78,7 @@ public class DesenvolvedoraDados {
 
 	        // Set the Desenvolvedora for the Jogo
 	        jogo.setDes(existingDesenvolvedora);
-
+	        existingDesenvolvedora.addListJogos(jogo);
 	        // Persist the Jogo
 	        em.persist(jogo);
 
@@ -127,6 +128,64 @@ public class DesenvolvedoraDados {
         em.close();
         return !desenvolvedoras.isEmpty();
     }
+	
+	public boolean verificarJogos(Desenvolvedora desenvolvedora,Jogo jogo) {
+		List<Jogo> jogos= desenvolvedora.getJogos();
+		
+		for(Jogo joga : jogos) {
+			if(joga.getNomeJogo().equals(jogo.getNomeJogo())) {
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	public List listarJogos(Desenvolvedora desenvolvedora) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+		EntityManager em = emf.createEntityManager();
+        // Consulta JPQL para verificar se já existe um cliente com o mesmo CPF
+		List<Jogo> jogos = em.createQuery("SELECT j FROM Jogo j WHERE j.desenvolvedora = :desenvolvedora", Jogo.class)
+                .setParameter("desenvolvedora", desenvolvedora)
+                .getResultList();
+        
+        em.close();
+        return jogos;
+
+	}
+	
+	public void atualizarVersao(long id, float versao_nova) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+		EntityManager em = emf.createEntityManager();
+		
+		try {
+		 em.getTransaction().begin();
+
+	        // Retrieve the Jogo entity from the database
+	        Jogo jogo = em.find(Jogo.class,id);
+	        
+	            // Update the field
+	            jogo.setVersao(versao_nova);
+
+	            // Commit the transaction to persist changes
+	            em.getTransaction().commit();
+	        
+	    } catch (Exception e) {
+	        // If an exception occurs, rollback the transaction
+	        if (em.getTransaction().isActive()) {
+	            em.getTransaction().rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        // Close the EntityManager and EntityManagerFactory
+	        em.close();
+	        emf.close();
+	    }
+		
+	}
+	
+	
+	
 
 
 }

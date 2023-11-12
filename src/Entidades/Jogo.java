@@ -15,7 +15,7 @@ public class Jogo {
 	private String nomeJogo , tipoJogo;
 	private float tamanhoJogo, preco , versao;
 	
-	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.PERSIST)
 	@JoinColumn(name="DES_ID")
 	private Desenvolvedora desenvolvedora;
 	
@@ -34,6 +34,16 @@ public class Jogo {
 	}
 	public void setDes(Desenvolvedora desenvolvedora) {
 		this.desenvolvedora = desenvolvedora;
+	}
+	
+	public String getNomeJogo() {
+		return this.nomeJogo;
+	}
+	public void setVersao(float versao) {
+	   this.versao = versao;
+	}
+	public long getId() {
+		return this.id;
 	}
 	
 	
