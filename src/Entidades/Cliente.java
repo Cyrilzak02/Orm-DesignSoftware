@@ -80,5 +80,17 @@ public class Cliente{
 		this.endereco = endereco;
 	}
 	
+	public float getSaldo() {
+		return saldo;
+	}
+	
+	public void setSaldo(float valor) {
+		this.saldo = valor;
+	}
+	
+	public Biblioteca getBiblioteca() {
+		return biblioteca;
+	}
+	
 	
 }

@@ -74,4 +74,17 @@ public class ClienteDados {
         // Se a lista de clientes não estiver vazia, significa que já existe um cliente com o mesmo CPF
         return !clientes.isEmpty();
     }
+    public static void adicionarSaldo(Cliente cliente, float valor) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+		EntityManager em = emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		cliente.setSaldo(cliente.getSaldo() + valor);
+		em.merge(cliente);
+		em.getTransaction().commit();
+		em.close();
+    }
+    
+    
+    
 }
