@@ -1,4 +1,4 @@
-package negocio;
+package Negocios;
 
 import Entidades.Cliente;
 import jakarta.persistence.EntityManager;

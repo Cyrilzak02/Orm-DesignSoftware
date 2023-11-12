@@ -1,6 +1,6 @@
 package Entidades;
 
-import dados.ClienteDados;
+import Dados.ClienteDados;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

@@ -1,9 +1,8 @@
 // ClienteDados.java
-package dados;
+package Dados;
 
-import negocio.ClienteNegocio;
 import Entidades.Cliente;
-
+import Negocios.ClienteNegocio;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
