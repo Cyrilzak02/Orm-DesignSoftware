@@ -63,10 +63,10 @@ public class Principal {
                         //add outros funcoes depois
                         System.out.print("Resposta: ");
                         String op = in.next();
-                        if(op.equals(1)) {;
+                        if(op.equals("1")) {;
                         	float valorAdicionar = clienteapresentacaosaldo.obterValorAdicionar();
                         	ClienteDados.adicionarSaldo(cliente, valorAdicionar);
-                        }else if(op.equals(2)) {
+                        }else if(op.equals("2")) {
                         	List<Jogo> jogosDoCliente = ClienteBibliotecaApresentacao.obterJogosDoCliente(cliente);
                         	for (Jogo jogo : jogosDoCliente) {
                         	    System.out.println("Nome do Jogo: " + jogo.getNomeJogo());               

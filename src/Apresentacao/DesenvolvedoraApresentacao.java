@@ -13,7 +13,7 @@ public class DesenvolvedoraApresentacao {
         	 System.out.println("================= Digite o cnpj da empresa: =================");
         	 String cnpj = in.next();
         	 System.out.println("================= Digite o endereco da empresa: =================");
-        	 String endereco = in.nextLine();
+        	 String endereco = in.next();
         	 
         	 return new Desenvolvedora(nome,cnpj,endereco);
         	 
