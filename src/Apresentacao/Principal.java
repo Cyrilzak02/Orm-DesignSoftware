@@ -1,10 +1,10 @@
 package Apresentacao;
 
 
-import java.util.List;
-import Entidades.Jogo;
-import java.util.Scanner;
-import Dados.ClienteDados;
+
+
+
+
 import Entidades.Cliente;
 import Entidades.Desenvolvedora;
 import Negocios.ClienteNegocio;
