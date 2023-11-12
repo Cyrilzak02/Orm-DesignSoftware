@@ -14,6 +14,7 @@ import Entidades.*;
 
 
 
+import Entidades.*;
 public class Principal {
 	public static ClienteApresentacao clienteApresentacao = new ClienteApresentacao();
 	public static ClienteNegocio clienteNegocio = new ClienteNegocio();
@@ -26,6 +27,7 @@ public class Principal {
 		
 	    Cliente cliente = new Cliente();
 	    Desenvolvedora desenvolvedora = new Desenvolvedora();
+	    ClienteApresentacaoSaldo clienteapresentacaosaldo= new ClienteApresentacaoSaldo();
 		Scanner in = new Scanner(System.in);
 		
 		System.out.println("Entrar como Desenvolvedora ou Cliente?(C/D else sair)");
@@ -54,12 +56,34 @@ public class Principal {
 				}
 				else {
 					System.out.println("Login realizado com sucesso");
-					break;
+					while (true) {
+                        System.out.println("[1]- Adicionar Saldo.");
+                        System.out.println("[2]- vizualizar biblioteca de jogos.");
+                        
+                        //add outros funcoes depois
+                        System.out.print("Resposta: ");
+                        String op = in.next();
+                        if(op.equals(1)) {;
+                        	float valorAdicionar = clienteapresentacaosaldo.obterValorAdicionar();
+                        	ClienteDados.adicionarSaldo(cliente, valorAdicionar);
+                        }else if(op.equals(2)) {
+                        	List<Jogo> jogosDoCliente = ClienteBibliotecaApresentacao.obterJogosDoCliente(cliente);
+                        	for (Jogo jogo : jogosDoCliente) {
+                        	    System.out.println("Nome do Jogo: " + jogo.getNomeJogo());               
+                        	    System.out.println("----------------------");
+                        	}
+                        }
+                        	
+                    }
+                    
+                    
 				}
+				
 			}
 			else {
 				System.out.println("Input errada. Tenta de novo.");
 			}
+			
 			
 		}
 			
