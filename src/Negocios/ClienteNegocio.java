@@ -4,43 +4,37 @@ import Entidades.Cliente;
 import jakarta.persistence.EntityManager;
 import java.util.List;
 
+import 	Dados.ClienteDados;
+
 public class ClienteNegocio {
+	
+	private ClienteDados clienteDados = new ClienteDados();
 
-    public static void cadastrarCliente(Cliente cliente, EntityManager em) {
+    public  Boolean cadastrarCliente(Cliente cliente) {
         // Verifica se já existe um cliente com o mesmo CPF
-        if (verificarClienteExistente(cliente.getCpf(), em)) {
-            System.out.println("Erro ao cadastrar o cliente: CPF já cadastrado.");
-            return;
+        if (this.clienteDados.verificarClienteExistente(cliente.getCpf())) {
+            return false;
+            
         }
-
-        try {
-            // Inicie a transação
-            em.getTransaction().begin();
-
-            // Persista o cliente no banco de dados
-            em.persist(cliente);
-
-            // Commit da transação
-            em.getTransaction().commit();
-
-            System.out.println("Cliente cadastrado com sucesso!");
-        } catch (Exception e) {
-            // Se ocorrer um erro, faça rollback na transação
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
-            System.out.println("Erro ao cadastrar o cliente: " + e.getMessage());
+          
+        
+        clienteDados.cadastrarCliente(cliente);
+        return true;
+        
+        }
+    public Cliente loginCliente(String cpf) {
+        // Verifica se já existe um cliente com o mesmo CPF
+        if (!this.clienteDados.verificarClienteExistente(cpf)) {
+            return null;
+            
+        }
+          
+        
+        return clienteDados.fazerLogin(cpf);
+        
+        
         }
     }
 
-    public static boolean verificarClienteExistente(String cpf, EntityManager em) {
-        // Consulta JPQL para verificar se já existe um cliente com o mesmo CPF
-        List<Cliente> clientes = em.createQuery("SELECT c FROM Cliente c WHERE c.cpf = :cpf", Cliente.class)
-                                    .setParameter("cpf", cpf)
-                                    .getResultList();
-
-        // Se a lista de clientes não estiver vazia, significa que já existe um cliente com o mesmo CPF
-        return !clientes.isEmpty();
-    }
-}
+    
 

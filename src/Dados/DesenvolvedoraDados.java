@@ -6,12 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+
 import jakarta.persistence.*;
 import java.util.*;
 
 
 import Entidades.Jogo;
+import Entidades.Cliente;
 import Entidades.Desenvolvedora;
 
 public class DesenvolvedoraDados {
@@ -50,6 +51,8 @@ public class DesenvolvedoraDados {
 		emf.close();
 		return desenvolvedoras;
 	}
+	
+	
     
 	public static Jogo publicarJogo(Desenvolvedora desenvolvedora, Jogo jogo) {
 	    EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
@@ -93,7 +96,40 @@ public class DesenvolvedoraDados {
 	    }
 
 	    return jogo;
-	}}
+	}
+	
+	public static Desenvolvedora fazerLoginDesenvolvedora(String cnpj) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+		EntityManager em = emf.createEntityManager();
+
+        
+            // Consulta para encontrar o cliente com base no e-mail
+            String jpql = "SELECT d FROM Desenvolvedora d WHERE d.cnpj = :cnpj"; //aqui tem que colocar como se o o cliente for achado , no negocio vc coloca a validacao (se nao for achado)
+            TypedQuery<Desenvolvedora> query = em.createQuery(jpql, Desenvolvedora.class);
+            query.setParameter("cnpj", cnpj);
+
+            // Tenta obter o cliente com o e-mail fornecido
+            
+            Desenvolvedora desenvolvedora =  query.getSingleResult();
+            em.close();
+            return desenvolvedora;
+	}
+	public  boolean verificarDesenvolvedoraExistente(String cnpj) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+		EntityManager em = emf.createEntityManager();
+        // Consulta JPQL para verificar se já existe um cliente com o mesmo CPF
+        List<Desenvolvedora> desenvolvedoras = em.createQuery("SELECT d FROM Desenvolvedora d WHERE d.cnpj = :cnpj", Desenvolvedora.class)
+                                    .setParameter("cnpj", cnpj )
+                                    .getResultList();
+
+        // Se a lista de clientes não estiver vazia, significa que já existe um cliente com o mesmo CPF
+        
+        em.close();
+        return !desenvolvedoras.isEmpty();
+    }
+
+
+}
 	
 		
 		

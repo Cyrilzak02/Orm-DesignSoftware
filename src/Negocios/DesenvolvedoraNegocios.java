@@ -7,20 +7,38 @@ import Dados.DesenvolvedoraDados;
 
 public class DesenvolvedoraNegocios {
 	
-	private DesenvolvedoraDados desenvolvedoraDados;
-public String cadastrarDesenvolvedora(Desenvolvedora desenvolvedora) {
+	private DesenvolvedoraDados desenvolvedoraDados = new DesenvolvedoraDados();
+public Boolean cadastrarDesenvolvedora(Desenvolvedora desenvolvedora) {
 		
 	    
 		if (!this.desenvolvedoraDados.consultaCnpj(desenvolvedora).isEmpty()) {
-			return "Erro: A desenvolvedora ja foi cadastrada!";
+			return false;
 			
 		}
 		
 		else {
 		desenvolvedoraDados.cadastrar(desenvolvedora);
-		return "Desenvolvedora cadastrada com sucesso!";
+		return true;
 		}
+		
+		
 	}
+
+public Desenvolvedora loginDesenvolvedora(String cnpj) {
+	
+    
+	if (!this.desenvolvedoraDados.verificarDesenvolvedoraExistente(cnpj)) {
+		return null;
+		
+	}
+	
+	else {
+	
+	return desenvolvedoraDados.fazerLoginDesenvolvedora(cnpj);
+	}
+	
+	
+}
 
 
 

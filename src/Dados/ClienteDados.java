@@ -1,6 +1,9 @@
 // ClienteDados.java
 package Dados;
 
+import java.util.Iterator;
+import java.util.List;
+
 import Entidades.Cliente;
 import Negocios.ClienteNegocio;
 import jakarta.persistence.EntityManager;
@@ -11,11 +14,9 @@ import jakarta.persistence.TypedQuery;
 
 public class ClienteDados {
 	
-	public static void cadastrarCliente(Cliente cliente, EntityManager em) {
-		if (ClienteNegocio.verificarClienteExistente(cliente.getCpf(), em)) {
-            System.out.println("Erro ao cadastrar o cliente: CPF já cadastrado.");
-            return;
-        }
+	public  void cadastrarCliente(Cliente cliente) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+		EntityManager em = emf.createEntityManager();
 	    try {
 	        // Inicie a transação
 	        em.getTransaction().begin();
@@ -34,26 +35,43 @@ public class ClienteDados {
 	        }
 	        System.out.println("Erro ao cadastrar o cliente: " + e.getMessage());
 	    }
+	    em.close();
 	}
 	
 
-    public static Cliente fazerLogin(String email) {
+    public  Cliente fazerLogin(String cpf) {
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
 		EntityManager em = emf.createEntityManager();
 
-        try {
+        
             // Consulta para encontrar o cliente com base no e-mail
-            String jpql = "SELECT c FROM Cliente c WHERE c.email = :email";
+            String jpql = "SELECT c FROM Cliente c WHERE c.cpf = :cpf"; //aqui tem que colocar como se o o cliente for achado , no negocio vc coloca a validacao (se nao for achado)
             TypedQuery<Cliente> query = em.createQuery(jpql, Cliente.class);
-            query.setParameter("email", email);
+            query.setParameter("cpf", cpf);
 
             // Tenta obter o cliente com o e-mail fornecido
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            // Nenhum cliente encontrado com o e-mail fornecido
-            return null;
-        } finally {
+            
+            Cliente cliente =  query.getSingleResult();
             em.close();
-        }
+            return cliente;
+        
+            
+        
+    }
+    public  boolean verificarClienteExistente(String cpf) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+		EntityManager em = emf.createEntityManager();
+        // Consulta JPQL para verificar se já existe um cliente com o mesmo CPF
+        List<Cliente> clientes = em.createQuery("SELECT c FROM Cliente c WHERE c.cpf = :cpf", Cliente.class)
+                                    .setParameter("cpf", cpf)
+                                    .getResultList();
+        
+        for (Cliente cliente : clientes) {
+			System.out.println(cliente.getNome());
+			
+		}
+        em.close();
+        // Se a lista de clientes não estiver vazia, significa que já existe um cliente com o mesmo CPF
+        return !clientes.isEmpty();
     }
 }
