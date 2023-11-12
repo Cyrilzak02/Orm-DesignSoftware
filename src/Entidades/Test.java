@@ -1,6 +1,9 @@
 package Entidades;
 
 import jakarta.persistence.EntityManager;
+
+import Negocios.DesenvolvedoraNegocios;
+import Dados.DesenvolvedoraDados;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 public class Test {
@@ -8,18 +11,27 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		Cliente c1 = new Cliente("Cyril Zakhia" ,"cyrilzakhia@hotmail.com","3810135342-62","Charmouta");
 		
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
-		EntityManager em = emf.createEntityManager();
+		Desenvolvedora d = new Desenvolvedora("RocketStar" , "322193453992" ,"Puta qui pariu");
 		
-		em.getTransaction().begin();
-		em.persist(c1);
-		em.getTransaction().commit();
+		DesenvolvedoraNegocios desenvolvedoraNegocios = new DesenvolvedoraNegocios();
 		
-		em.close();
-		emf.close();
+		
+		
+		System.out.print(desenvolvedoraNegocios.cadastrarDesenvolvedora(d));
+		
+		Jogo jogo = new Jogo( "Pussy" , "Action", 2.0f, 200.0f , 1.0f);
+		
+	    DesenvolvedoraDados.publicarJogo(d,jogo);
+		
+		
+		
+		
+		
+		
+		
+		
 		 
 		
 	}
