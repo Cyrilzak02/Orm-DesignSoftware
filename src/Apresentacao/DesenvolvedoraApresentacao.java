@@ -1,6 +1,8 @@
 package Apresentacao;
 
 import Entidades.Desenvolvedora;
+import Entidades.Jogo;
+import Negocios.DesenvolvedoraNegocios;
 import java.util.*;
 public class DesenvolvedoraApresentacao {
          public Desenvolvedora preencherDesenvolvedora() {
@@ -26,4 +28,28 @@ public class DesenvolvedoraApresentacao {
         	 return cnpj;
         	 
          }
+         public boolean atualizar_Versao(Desenvolvedora desenvolvedora) {
+        	 DesenvolvedoraNegocios des = new DesenvolvedoraNegocios();
+        	 System.out.println("Escolhe um jogo para atualizar a versao:(Digitar numero)");
+        	 Scanner in = new Scanner(System.in);
+				int index = in.nextInt();
+			System.out.println("Digita a nova versao: ");
+			float versao = in.nextFloat();
+			
+			return des.atualizarVersao(desenvolvedora, index, versao);
+				
+         }
+         public boolean deleteJogo(Desenvolvedora desenvolvedora) {
+        	 DesenvolvedoraNegocios des = new DesenvolvedoraNegocios();
+        	 System.out.println("Escolhe um jogo que voce deseja remover:(Digitar numero)");
+        	 Scanner in = new Scanner(System.in);
+				int index = in.nextInt();
+			
+			
+			return des.deleteJogo(desenvolvedora, index);
+				
+         }
+         
+         
+         
 }

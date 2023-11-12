@@ -1,9 +1,11 @@
 package Negocios;
 
 import java.io.IOException;
+import java.util.List;
 
 import Entidades.Desenvolvedora;
 import Dados.DesenvolvedoraDados;
+import Entidades.Jogo;
 
 public class DesenvolvedoraNegocios {
 	
@@ -39,6 +41,51 @@ public Desenvolvedora loginDesenvolvedora(String cnpj) {
 	
 	
 }
+
+public boolean publicarJogo(Desenvolvedora desenvolvedora , Jogo jogo) { // if the game has already been added, it will return false , else true
+	if(desenvolvedoraDados.verificarJogos(desenvolvedora, jogo)) {
+		return false;
+	}
+	
+	desenvolvedoraDados.publicarJogo(desenvolvedora, jogo);
+	return true;
+	
+	
+}
+
+public List listarJogos(Desenvolvedora desenvolvedora) {
+	List<Jogo> jogos = desenvolvedoraDados.listarJogos(desenvolvedora);
+	
+	if(jogos.isEmpty()) {
+		return null;
+	}
+	
+	return jogos;
+}
+public boolean atualizarVersao(Desenvolvedora desenvolvedora , int index , float versao_nova) {
+	List <Jogo> jogos = desenvolvedoraDados.listarJogos(desenvolvedora);
+	if(index >= jogos.size()) {
+		return false;
+	}
+	desenvolvedoraDados.atualizarVersao(jogos.get(index).getId(),versao_nova);
+	return true;
+	
+	
+	
+}
+public boolean deleteJogo(Desenvolvedora desenvolvedora , int index) {
+	List <Jogo> jogos = desenvolvedoraDados.listarJogos(desenvolvedora);
+	if(index >= jogos.size()) {
+		return false;
+	}
+	desenvolvedoraDados.deleteJogo(jogos.get(index).getId());
+	return true;
+	
+	
+	
+}
+
+
 
 
 
