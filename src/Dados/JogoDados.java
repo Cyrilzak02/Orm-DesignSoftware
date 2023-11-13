@@ -11,8 +11,8 @@ public class JogoDados {
 	public static List listarJogos() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
         EntityManager em = emf.createEntityManager();
-	
-		String jpql = "SELECT j FROM Jogos j ";
+        em.getTransaction().begin();
+		String jpql = "SELECT j FROM Jogo j ";
 		List<Jogo> jogos = em.createQuery(jpql, Jogo.class).getResultList();
 		
 		em.getTransaction().commit();

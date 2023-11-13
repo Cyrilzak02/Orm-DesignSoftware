@@ -18,13 +18,12 @@ public Boolean cadastrarDesenvolvedora(Desenvolvedora desenvolvedora) {
 			
 		}
 		
-		else {
 		desenvolvedoraDados.cadastrar(desenvolvedora);
 		return true;
 		}
 		
 		
-	}
+	
 
 public Desenvolvedora loginDesenvolvedora(String cnpj) {
 	
@@ -34,13 +33,13 @@ public Desenvolvedora loginDesenvolvedora(String cnpj) {
 		
 	}
 	
-	else {
+	
 	
 	return desenvolvedoraDados.fazerLoginDesenvolvedora(cnpj);
 	}
 	
 	
-}
+
 
 public boolean publicarJogo(Desenvolvedora desenvolvedora , Jogo jogo) { // if the game has already been added, it will return false , else true
 	if(desenvolvedoraDados.verificarJogos(desenvolvedora, jogo)) {

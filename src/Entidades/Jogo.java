@@ -45,6 +45,9 @@ public class Jogo {
 	public long getId() {
 		return this.id;
 	}
+	public float getPreco() {
+		return this.preco;
+	}
 	
 	
 	

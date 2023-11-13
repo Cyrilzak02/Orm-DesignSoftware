@@ -1,6 +1,7 @@
 package Negocios;
 
 import Entidades.Cliente;
+import Entidades.Jogo;
 import jakarta.persistence.EntityManager;
 import java.util.List;
 
@@ -34,6 +35,16 @@ public class ClienteNegocio {
         
         
         }
+    public String comprarJogo(Cliente cliente , Jogo jogo)  {
+    	if(cliente.getSaldo() < jogo.getPreco()) {
+    		return "Voce nao tem um saldo suficiente";
+    	}
+    	
+    	clienteDados.comprar(cliente, jogo);
+    	return "Compra concluida com sucesso";
+    	
+    	
+    }
     }
 
     
