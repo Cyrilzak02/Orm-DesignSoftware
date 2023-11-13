@@ -59,6 +59,7 @@ public class Principal {
 					while (true) {
                         System.out.println("[1]- Adicionar Saldo.");
                         System.out.println("[2]- vizualizar biblioteca de jogos.");
+                        System.out.println("[3]- Comprar um jogo");
                         
                         //add outros funcoes depois
                         System.out.print("Resposta: ");
@@ -73,6 +74,11 @@ public class Principal {
                         	    System.out.println("----------------------");
                         	}
                         }
+                        else if(op.equals("3")) {
+                        	String mensagem =clienteApresentacao.comprarJogo(cliente);
+                        	System.out.println(mensagem);
+                        	
+                        } 
                         	
                     }
                     

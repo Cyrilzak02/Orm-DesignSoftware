@@ -1,6 +1,7 @@
 // ClienteDados.java
 package Dados;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +12,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import Entidades.Jogo;
+import Entidades.*;
+import java.util.Date;
 
 public class ClienteDados {
 	
@@ -84,7 +88,47 @@ public class ClienteDados {
 		em.getTransaction().commit();
 		em.close();
     }
-    
+    public void comprar(Cliente cliente , Jogo jogo) {
+    	Date date = new Date();
+    	Pedido pedido = new Pedido(date, jogo.getPreco() , cliente,jogo);
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jogosOnlinePu");
+    	EntityManagerFactory emd = Persistence.createEntityManagerFactory("jogosOnlinePu");
+		EntityManager eml = emd.createEntityManager();
+        
+		EntityManager em = emf.createEntityManager();
+	    try {
+	        // Inicie a transação
+	        em.getTransaction().begin();
+	        Cliente c = em.find(Cliente.class,cliente.getId());
+	        float saldo  = c.getSaldo();
+	        float saldo_final = saldo-jogo.getPreco();
+            // Update the field
+            c.setSaldo(saldo_final);
+
+            // Commit the transaction to persist changes
+            em.getTransaction().commit();
+            em.close();
+            
+            eml.getTransaction().begin();
+	        // Persista o cliente no banco de dados
+	        eml.persist(pedido);
+
+	        // Commit da transação
+	        eml.getTransaction().commit();
+
+	       
+	    } catch (Exception e) {
+	        // Se ocorrer um erro, faça rollback na transação
+	        if (em.getTransaction().isActive()) {
+	            em.getTransaction().rollback();
+	        }
+	        System.out.println("Erro ao comprar " + e.getMessage());
+	    }
+	    emd.close();
+	    
+	    
+    	
+    }
     
     
 }
